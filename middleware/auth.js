@@ -10,7 +10,7 @@ const verifyJWT = (req, res, next) => {
     if(!token){
         res.status(302).send({ result: [], validation: {status:false, status_code:302 , message:'Not Authorized!'} }); //Expires
     }else{
-        jwt.verify(token, "jwtsecret", (err, decoded) => {
+        jwt.verify(token, "jwtsecret", (err, decoded) => { //To note secret can be save on the ENV
             if(err){
                 res.status(401).send({ result: [], validation: {status:false, status_code:401, message:'Failed Authentication!'} });
             }else{

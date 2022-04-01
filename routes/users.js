@@ -6,18 +6,6 @@ const jwt = require('jsonwebtoken');
 const verifyJWT = require('../middleware/auth');
 
 /*
-* Data Array Structure...
-*/
-const userData = [
-    {id:1, name:'Jan', userType: 'Scheduler', email: 'jan@gmail.com', password: hashPassword('1234567')},
-    {id:2, name:'Dr. Willy Ong', userType: 'Doctor', email: 'willyong@gmail.com', password: hashPassword('1234567')},
-    {id:3, name:'Dr. Jane', userType: 'Doctor', email: 'jane@gmail.com', password: hashPassword('1234567')},
-    {id:4, name:'Dr. Jan', userType: 'Doctor', email: 'drjan@gmail.com', password: hashPassword('1234567')},
-    {id:5, name:'Dr. Jack', userType: 'Doctor', email: 'drjack@gmail.com', password: hashPassword('1234567')},
-];
-
-
-/*
 * View all users
 */
 router.get('/', verifyJWT, (req, res) => {
@@ -124,9 +112,9 @@ router.post('/login', (req, res) => {
         //Logged in...
 
         const id = attempt.id;
-        const jwtToken = jwt.sign({id}, "jwtsecret", {
-            //expiresIn: '365d' // expires in 365 days
-            expiresIn: 300,
+        const jwtToken = jwt.sign({id}, "jwtsecret", { //To note secret can be save on the ENV
+            expiresIn: '60d' // expires in 365 days
+            //expiresIn: 300,
         })
 
         attempt['token'] = jwtToken; //add token...
