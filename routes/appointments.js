@@ -7,7 +7,8 @@ const nodemailer = require('nodemailer');
 /*
 * View all apppointments
 */
-router.get('/', verifyJWT, (req, res) => {
+//router.get('/', verifyJWT, (req, res) => {
+router.get('/', (req, res) => {
     res.status(200).send({ result: appointmentData, validation: {status:true, message:'Successfully Loaded!'} });
 });
 
@@ -51,6 +52,7 @@ router.post('/dateFilter', verifyJWT, (req, res) => {
 /*
 * Add appointment
 */
+
 router.post('/',  (req, res) => {
 
     // Validation...
@@ -58,6 +60,8 @@ router.post('/',  (req, res) => {
     if(error){
         return res.status(200).send({validation:{status:false, status_code:200, message:error.details[0].message}})
     }
+
+    console.log(error);
 
     //Check maximum appointments per day...
     const dateObjToday = new Date();
@@ -88,7 +92,7 @@ router.post('/',  (req, res) => {
     appointmentData.push(newAppointment);
 
     //send request
-    res.status(201).send({ result: newAppointment, validation: {status:true, status_code:201, message:'Successfully Updated!'} });
+    res.status(200).send({ result: newAppointment, validation: {status:true, status_code:201, message:'Successfully Updated!'} });
 });
 
 /*
@@ -126,7 +130,6 @@ router.put('/:id', verifyJWT, async(req, res) => {
     const user = userData.find(u => {
         return u.id === did;
     });
-
 
     //Send email if user exist and only sent once...
     if(user && user.email && (appointment.did !== appointment.mail_sent) && appointment.status !== 'Denied'){
@@ -237,13 +240,13 @@ router.delete('/:id', verifyJWT, (req, res) => {
 */
 function validateAppointment(appointment){
     const rules = {
-        'name': Joi.string().min(3).required(),
-        'appointment_schedule': Joi.date().required(),
-        'appointment_time': Joi.date().required(),
-        'appointment_time_to': Joi.date().required(),
-        'appointment_comment': Joi.string().allow('', null),
-        'status': Joi.string().allow('', null),
-        'did': Joi.number().allow('', null)
+        'name': Joi.string().min(3).required().label('Patient Name'),
+        'appointment_schedule': Joi.date().required().label('Appointment Date'),
+        'appointment_time': Joi.date().required().label('Time From'),
+        'appointment_time_to': Joi.date().required().label('Time To'),
+        'appointment_comment': Joi.string().allow('', null).label('Apppoitment Comment'),
+        'status': Joi.string().allow('', null).label('Apppoitment Status'),
+        'did': Joi.number().allow('', null).label('Doctor')
     };
     return Joi.validate(appointment, rules);
 }

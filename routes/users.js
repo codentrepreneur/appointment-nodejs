@@ -40,7 +40,7 @@ router.post('/', (req, res) => {
     // Check email exist...
     const user = checkUserEmailExist(req.body.email);
     if(user){
-        res.status(200).send({validation: {status:false, status_code:200, message:'Email has already been used!'} });
+        res.status(200).send({validation: {status:false, status_code:200, message:'Email Address has already been used!'} });
         return;
     }
 
@@ -114,7 +114,7 @@ router.post('/login', (req, res) => {
         const id = attempt.id;
         const jwtToken = jwt.sign({id}, "jwtsecret", { //To note secret can be save on the ENV
             expiresIn: '60d' // expires in 365 days
-            //expiresIn: 300,
+            //expiresIn: 1,
         })
 
         attempt['token'] = jwtToken; //add token...
@@ -158,19 +158,19 @@ router.post('/login', (req, res) => {
 */
 function validateUser(user){
     const rules = {
-        'userType': Joi.string().required(),
-        'name': Joi.string().min(3).required(),
-        'email': Joi.string().min(3).required().email(),
-        'password': Joi.string().min(6).required(),
-        'confirmPassword': Joi.string().valid(Joi.ref('password')).required(),
+        'userType': Joi.string().required().label('User Type'),
+        'name': Joi.string().min(3).required().label('Patient Name'),
+        'email': Joi.string().min(3).required().email().label('Email Address'),
+        'password': Joi.string().min(6).required().label('Password'),
+        'confirmPassword': Joi.string().valid(Joi.ref('password')).required().label('Confirmation Password'),
     };
     return Joi.validate(user, rules);
 }
 
 function validateLoginUser(user){
     const rules = {
-        'email': Joi.string().min(3).required().email(),
-        'password': Joi.string().min(6).required(),
+        'email': Joi.string().min(3).required().email().label('Email Address'),
+        'password': Joi.string().min(6).required().label('Password'),
     };
     return Joi.validate(user, rules);
 }
