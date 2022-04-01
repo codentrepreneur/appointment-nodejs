@@ -61,8 +61,6 @@ router.post('/',  (req, res) => {
         return res.status(200).send({validation:{status:false, status_code:200, message:error.details[0].message}})
     }
 
-    console.log(error);
-
     //Check maximum appointments per day...
     const dateObjToday = new Date();
     const dateToday = dateObjToday.setHours(0,0,0,0); //Todays Date...

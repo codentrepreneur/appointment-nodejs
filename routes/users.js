@@ -159,7 +159,7 @@ router.post('/login', (req, res) => {
 function validateUser(user){
     const rules = {
         'userType': Joi.string().required().label('User Type'),
-        'name': Joi.string().min(3).required().label('Patient Name'),
+        'name': Joi.string().min(3).required().label('Name'),
         'email': Joi.string().min(3).required().email().label('Email Address'),
         'password': Joi.string().min(6).required().label('Password'),
         'confirmPassword': Joi.string().valid(Joi.ref('password')).required().label('Confirmation Password'),
