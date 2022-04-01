@@ -132,6 +132,9 @@ router.put('/:id', verifyJWT, async(req, res) => {
     //Send email if user exist and only sent once...
     if(user && user.email && (appointment.did !== appointment.mail_sent) && appointment.status !== 'Denied'){
 
+        /*-------------------------------------------------
+        * NOTE: This can be move on the custom config file
+        *--------------------------------------------------*/
         // create reusable transporter object using the default SMTP transport
         let transporter = nodemailer.createTransport({
             host: "smtp.mailtrap.io",
@@ -150,6 +153,7 @@ router.put('/:id', verifyJWT, async(req, res) => {
             subject: `New appoint from ${appointment.name}!`, // Subject line
             html: `Hello ${user.name}, <br/><br/>Your have new a apppoint from ${appointment.name}<br/><br/>Cheers...`, // html body
         });
+        //end mail...
 
         //assigned email flag...
         appointment.mail_sent = did;
