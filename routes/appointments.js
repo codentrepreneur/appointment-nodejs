@@ -118,7 +118,7 @@ router.put('/:id', verifyJWT, async(req, res) => {
     //Update appointment...
     appointment.did = did;
     appointment.name = req.body.name;
-    appointment.status = req.body.status ? req.body.status : null;
+    //appointment.status = req.body.status ? req.body.status : null;
     appointment.appointment_schedule = req.body.appointment_schedule;
 
     appointment.appointment_time = req.body.appointment_time;
