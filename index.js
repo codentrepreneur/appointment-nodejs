@@ -29,6 +29,7 @@ global.appointmentData = [
 ];
 */
 
+//Data are being stored with global variable...
 global.userData=[];
 global.appointmentData=[];
 

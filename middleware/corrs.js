@@ -2,7 +2,6 @@
 * Allow specific domain access the apis...
 */
 
-
 function corrs(req, res, next){
 
     // Website you wish to allow to connect
