@@ -5,6 +5,7 @@
 function corrs(req, res, next){
 
     // Website you wish to allow to connect
+    //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.setHeader('Access-Control-Allow-Origin', 'https://appointment.jankarlobulawan.com');
 
     // Request methods you wish to allow
