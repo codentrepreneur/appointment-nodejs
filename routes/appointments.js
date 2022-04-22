@@ -7,8 +7,8 @@ const nodemailer = require('nodemailer');
 /*
 * View all apppointments
 */
-//router.get('/', verifyJWT, (req, res) => {
-router.get('/', (req, res) => {
+router.get('/', verifyJWT, (req, res) => {
+//router.get('/', (req, res) => {
     res.status(200).send({ result: appointmentData, validation: {status:true, message:'Successfully Loaded!'} });
 });
 

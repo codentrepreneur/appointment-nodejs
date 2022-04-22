@@ -67,7 +67,7 @@ router.get('/auth', verifyJWT, (req, res) => {
     //Check if exist...
     const user = checkUserExist(req.userID);
     if(!user){
-        res.status(200).send({validation:{status:false, status_code:200, message:'User not found!'}});
+        res.status(200).send({validation:{status:false, status_code:401, message:'User not found!'}});
         return;
     }
 

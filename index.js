@@ -9,7 +9,7 @@ const app = express();
 * Sample test data array structure...
 */
 
-/*
+
 global.userData = [
     {id:1, name:'Jan', userType: 'Scheduler', email: 'jan@gmail.com', password: hashPassword('1234567')},
     {id:2, name:'Dr. Willy Ong', userType: 'Doctor', email: 'willyong@gmail.com', password: hashPassword('1234567')},
@@ -27,11 +27,11 @@ global.appointmentData = [
     {id:6, did: 2, name:'Jameson', status: 'Denied', appointment_schedule: '2022-03-29T16:00:00.000Z', created_at: '2022-03-01T19:00:00.000Z'},
     {id:7, did: 3, name:'Paul', status: 'Accepted', appointment_schedule: '2022-03-11T16:00:00.000Z', created_at: '2022-03-01T19:00:00.000Z'},
 ];
-*/
+
 
 //Data are being stored with global variable...
-global.userData=[];
-global.appointmentData=[];
+//global.userData=[];
+//global.appointmentData=[];
 
 //Middleware
 app.use(express.json());
