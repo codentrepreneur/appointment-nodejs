@@ -12,7 +12,7 @@ const app = express();
 
 global.userData = [
     {id:1, name:'Jan', userType: 'Scheduler', email: 'jan@gmail.com', password: hashPassword('1234567')},
-    {id:2, name:'Dr. Willy Ong', userType: 'Doctor', email: 'willyong@gmail.com', password: hashPassword('1234567')},
+    {id:2, name:'Dr. Ong', userType: 'Doctor', email: 'willyong@gmail.com', password: hashPassword('1234567')},
     {id:3, name:'Dr. Jane', userType: 'Doctor', email: 'jane@gmail.com', password: hashPassword('1234567')},
     {id:4, name:'Dr. Jan', userType: 'Doctor', email: 'drjan@gmail.com', password: hashPassword('1234567')},
     {id:5, name:'Dr. Jack', userType: 'Doctor', email: 'drjack@gmail.com', password: hashPassword('1234567')},
